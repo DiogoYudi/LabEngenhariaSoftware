@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 1</title>
+</head>
+<body>
+    <h1>Atividades da Semana 1</h1>
+    <a href="../semana1/">Voltar</a><br>
+    <script type="text/javascript">
+        let x = prompt("Digite algum dado");
+        if(confirm("Deseja ver o tipo do dado digitado?")){
+            if(isNaN(x) == false){
+                document.write(typeof(Number(x)));
+            }
+            else if(x == "true" || x == "false")
+                document.write(typeof(Boolean(x)));
+            else
+                document.write(typeof(x));
+        }
+        else
+            document.write("Obrigado por visitar esta página");
+    </script>
+</body>
+</html>
