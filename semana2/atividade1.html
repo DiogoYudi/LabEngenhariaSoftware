@@ -12,9 +12,14 @@
     <script>
         let x = [];
         function myFunction(){
+            document.getElementById("insert").innerHTML = "";
             x.push(document.getElementById("text").value);
             x.sort();
-            document.getElementById("insert").innerHTML = x;
+            x.forEach(function(text){
+                let listItem = document.createElement('li');
+                listItem.textContent = text;
+                document.getElementById("insert").appendChild(listItem);
+            });
         }
     </script>
 </body>
