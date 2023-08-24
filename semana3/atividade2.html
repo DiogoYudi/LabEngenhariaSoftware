@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 1</title>
+</head>
+<body>
+    <a href="index.html">Voltar</a><br>
+    <p id="p"></p>
+    <script>
+        function startClock(){
+            let x = new Date();
+            time = String(x.getHours()).padStart(2,'0') + ":" + String(x.getMinutes()).padStart(2,'0') + ":" + String(x.getSeconds()).padStart(2,'0');
+            document.getElementById("p").innerHTML = time;
+            setTimeout(startClock, 1000);
+        }
+        startClock();
+    </script>
+</body>
+</html>
