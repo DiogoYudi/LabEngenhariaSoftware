@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 2</title>
+</head>
+<body>
+    <a href="index.html">Voltar</a><br>
+    <h1> Formulário de Cadastro </h1>
+    <form>
+        <input type="text" id="marca" placeholder="Marca">
+        <input type="text" id="modelo" placeholder="Modelo">
+        <input type="number" id="ano" placeholder="Ano de Fabricação">
+        <input type="text" id="cor" placeholder="Cor">
+        <input type="number" id="km" placeholder="Kilometragem">
+        <input type="text" id="vlr" placeholder="Valor Fipe">
+        <input type="button" value="Enviar" onclick="myCar()">
+    </form>
+
+    <script>
+        class Carro{
+            constructor(brand,model,year,color,km,price){
+                this.brand = brand;
+                this.model = model;
+                this.year = year;
+                this.color = color;
+                this.km = km;
+                this.price = price;
+            }
+
+            anoUtilizacao(){
+                let x = new Date();
+                return Number(x.getFullYear()) - Number(this.year);
+            }
+
+            valorMercado(){
+                let x = new Date();
+                x.getFullYear();
+                let totalyear = x - this.year;
+                let kmyear = this.km/totalyear;
+                let price = Number(this.price);
+                if(kmyear <= 30000) return (price*110/100);
+                else if(kmyear > 30000 && kmyear <= 50000) return price;
+                else return (price*(90/100));
+            }
+        }
+
+        function myCar(){
+            let c = new Carro(document.getElementById("marca").value,document.getElementById("modelo").value,document.getElementById("ano").value,document.getElementById("cor").value,document.getElementById("km").value,document.getElementById("vlr").value);
+            console.log("Anos utilizado: ",c.anoUtilizacao());
+            console.log("Valor de mercado: ",c.valorMercado());
+        }
+    </script>
+</body>
+</html>

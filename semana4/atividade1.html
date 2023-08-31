@@ -12,7 +12,8 @@
         <input type="text" id="nome" placeholder="Nome Completo">
         <input type="email" id="email" placeholder="Email">
         <input type="date" id="data">
-        <input type="text" id="telefone" placeholder="Telefone">
+        <input type="text" id="telefone" placeholder="Telefone Fixo">
+        <input type="text" id="celular" placeholder="Telefone Celular">
         <input type="radio" name="prof" id="professor" value="professor" onclick="functionProf()">
         <label for="professor">Professor</label>
         <input type="radio" name="prof" id="aluno" value="aluno" onclick="functionAluno()">
@@ -21,6 +22,7 @@
         <input type="text" id="areacurso2">
         <p id="link">Lattes</p>
         <input type="text" id="link2" style="display:block">
+        <input type="text" id="matricula" placeholder="Matrícula">
         <input type="button" value="Enviar" style="margin-top: 15px;" onclick="functionClass()">
     </form>
 
@@ -41,6 +43,9 @@
             let sobrenome;
             let email;
             let data_nascimento;
+            let telefone;
+            let celular;
+            let matricula;
 
             this.nomeCompleto = function(){
                 return this.nome + " " + this.sobrenome;
@@ -68,6 +73,24 @@
             }
             this.getDataNasc = function(){
                 return this.data_nascimento;
+            }
+            this.setTelefone = function(telefone){
+                this.telefone = telefone;
+            }
+            this.getTelefone = function(){
+                return this.telefone;
+            }
+            this.setCelular = function(celular){
+                this.celular = celular;
+            }
+            this.getCelular = function(){
+                return this.celular;
+            }
+            this.setMatricula = function(matricula){
+                this.matricula = matricula;
+            }
+            this.getMatricula = function(){
+                return this.matricula;
             }
         }
         
@@ -104,7 +127,7 @@
             let p = new Professor();
             let n = document.getElementById("nome").value;
             let s = n.split(' ');
-            if(document.getElementById("professor").value == "professor"){
+            if(document.querySelector('input[name=prof]:checked').value == "professor"){
                 p.setNome(s[0]);
                 p.setSobrenome(s[1]);
                 p.setEmail(document.getElementById("email").value)
@@ -112,26 +135,38 @@
                 p.setArea(document.getElementById("areacurso2").value);
                 p.setLink(document.getElementById("link2").value);
                 p.nomeCompleto();
-                console.log(p.getNome());
-                console.log(p.getSobrenome());
-                console.log(p.nomeCompleto());
-                console.log(p.getDataNasc());
-                console.log(p.getEmail());
-                console.log(p.getArea());
-                console.log(p.getLink());
+                p.setTelefone(document.getElementById("telefone").value);
+                p.setCelular(document.getElementById("celular").value);
+                p.setMatricula(document.getElementById("matricula").value);
+                console.log("Primeiro nome: ",p.getNome());
+                console.log("Sobrenome: ", p.getSobrenome());
+                console.log("Nome completo: ",p.nomeCompleto());
+                console.log("Data de Nascimento: ", p.getDataNasc());
+                console.log("Email: ", p.getEmail());
+                console.log("Área de profissão: ", p.getArea());
+                console.log("Lattes: ", p.getLink());
+                console.log("Telefone fixo: ", p.getTelefone());
+                console.log("Telefone celular: ", p.getCelular());
+                console.log("Matrícula: ", p.getMatricula());
             }
-            else if(document.getElementById("aluno").value == "aluno"){
+            else if(document.querySelector('input[name=prof]:checked').value == "aluno"){
                 a.setNome(s[0]);
                 a.setSobrenome(s[1]);
                 a.setEmail(document.getElementById("email").value)
                 a.setDataNasc(document.getElementById("data").value);
-                a.setArea(document.getElementById("areacurso2").value);
-                console.log(a.getNome());
-                console.log(a.getSobrenome());
-                console.log(a.nomeCompleto());
-                console.log(a.getDataNasc());
-                console.log(a.getEmail());
-                console.log(a.getCurso());
+                a.setCurso(document.getElementById("areacurso2").value);
+                a.setTelefone(document.getElementById("telefone").value);
+                a.setCelular(document.getElementById("celular").value);
+                a.setMatricula(document.getElementById("matricula").value);
+                console.log("Primeiro nome: ", a.getNome());
+                console.log("Sobrenome: ", a.getSobrenome());
+                console.log("Nome completo: ", a.nomeCompleto());
+                console.log("Data de Nascimento: ", a.getDataNasc());
+                console.log("Email: ", a.getEmail());
+                console.log("Curso: ", a.getCurso());
+                console.log("Telefone fixo: ", a.getTelefone());
+                console.log("Telefone celular: ", a.getCelular());
+                console.log("Matrícula: ", a.getMatricula());
             }
         }
     </script>
