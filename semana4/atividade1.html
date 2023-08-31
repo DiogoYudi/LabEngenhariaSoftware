@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 1</title>
+</head>
+<body>
+    <a href="index.html">Voltar</a><br>
+    <h1> Formulário de Cadastro </h1>
+    <form>
+        <input type="text" id="nome" placeholder="Nome Completo">
+        <input type="email" id="email" placeholder="Email">
+        <input type="date" id="data">
+        <input type="text" id="telefone" placeholder="Telefone">
+        <input type="radio" name="prof" id="professor" value="professor" onclick="functionProf()">
+        <label for="professor">Professor</label>
+        <input type="radio" name="prof" id="aluno" value="aluno" onclick="functionAluno()">
+        <label for="aluno">Aluno</label>
+        <p id="areacurso">Área</p>
+        <input type="text" id="areacurso2">
+        <p id="link">Lattes</p>
+        <input type="text" id="link2" style="display:block">
+        <input type="button" value="Enviar" style="margin-top: 15px;" onclick="functionClass()">
+    </form>
+
+    <script>
+        function functionProf(){
+            document.getElementById("areacurso").innerHTML = "Área";
+            document.getElementById("link").innerHTML = "Lattes";
+            document.getElementById("link2").style.display = "block";
+        }
+        function functionAluno(){
+            document.getElementById("areacurso").innerHTML = "Curso";
+            document.getElementById("link").innerHTML = "";
+            document.getElementById("link2").style.display = "none";
+        }
+
+        function Pessoa(){
+            let nome;
+            let sobrenome;
+            let email;
+            let data_nascimento;
+
+            this.nomeCompleto = function(){
+                return this.nome + " " + this.sobrenome;
+            }
+            this.setNome = function(nome){
+                this.nome = nome;
+            }
+            this.getNome = function(){
+                return this.nome;
+            }
+            this.setSobrenome = function(sobrenome){
+                this.sobrenome = sobrenome;
+            }
+            this.getSobrenome = function(){
+                return this.sobrenome;
+            }
+            this.setEmail = function(email){
+                this.email = email;
+            }
+            this.getEmail = function(){
+                return this.email;
+            }
+            this.setDataNasc = function(data){
+                this.data_nascimento = data;
+            }
+            this.getDataNasc = function(){
+                return this.data_nascimento;
+            }
+        }
+        
+        function Aluno(){
+            let curso;
+            this.setCurso = function(curso){
+                this.curso = curso;
+            }
+            this.getCurso = function(){
+                return this.curso;
+            }
+            Pessoa.call(this);
+        }
+
+        function Professor(){
+            let area_atuacao;
+            let link_lattes;
+            this.setArea = function(area){
+                this.area_atuacao = area;
+            }
+            this.getArea = function(){
+                return this.area_atuacao;
+            }
+            this.setLink = function(link){
+                this.link_lattes = link;
+            }
+            this.getLink = function(){
+                return this.link_lattes;
+            }
+            Pessoa.call(this);
+        }
+        function functionClass(){
+            let a = new Aluno();
+            let p = new Professor();
+            let n = document.getElementById("nome").value;
+            let s = n.split(' ');
+            if(document.getElementById("professor").value == "professor"){
+                p.setNome(s[0]);
+                p.setSobrenome(s[1]);
+                p.setEmail(document.getElementById("email").value)
+                p.setDataNasc(document.getElementById("data").value);
+                p.setArea(document.getElementById("areacurso2").value);
+                p.setLink(document.getElementById("link2").value);
+                p.nomeCompleto();
+                console.log(p.getNome());
+                console.log(p.getSobrenome());
+                console.log(p.nomeCompleto());
+                console.log(p.getDataNasc());
+                console.log(p.getEmail());
+                console.log(p.getArea());
+                console.log(p.getLink());
+            }
+            else if(document.getElementById("aluno").value == "aluno"){
+                a.setNome(s[0]);
+                a.setSobrenome(s[1]);
+                a.setEmail(document.getElementById("email").value)
+                a.setDataNasc(document.getElementById("data").value);
+                a.setArea(document.getElementById("areacurso2").value);
+                console.log(a.getNome());
+                console.log(a.getSobrenome());
+                console.log(a.nomeCompleto());
+                console.log(a.getDataNasc());
+                console.log(a.getEmail());
+                console.log(a.getCurso());
+            }
+        }
+    </script>
+</body>
+</html>
